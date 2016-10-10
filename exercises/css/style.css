@@ -188,6 +188,11 @@ body {
 	margin: 0;
 }
 
+#nav li ul.see{
+	display: block;
+	z-index: 100;
+}
+
 #nav li ul li {
 	float: none;
 	padding: 5px;
@@ -326,4 +331,13 @@ margin: 15px 0;
 	background-color: #333;
 	z-index: 100;
 	
+}
+
+div.preview {
+	display: inline-block;
+	width: 30%;
+}
+
+div.current-snippet img {
+	border: 3px solid blue;
 }
