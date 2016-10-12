@@ -1,0 +1,35 @@
+.container{
+  box-sizing: border-box;
+  width: 100%;
+  margin: 10px auto;  
+}
+
+.side-menu{
+  margin: 2px;
+  padding-top: 10px;
+  display: inline-block;
+  background: lightgrey;
+  box-sizing: border-box;
+  width:10%;
+  float: left;
+}
+
+.product-grid {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 85%;
+}
+
+.product-box{
+  box-sizing: border-box;
+  width: 24%;
+  display: inline-block;
+  border: 1px solid aqua;
+  padding : 10px;
+  margin: 4px;  
+}
+
+.product-box img {
+  height: 70px;
+  width: 70px;
+}
