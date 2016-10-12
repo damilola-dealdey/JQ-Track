@@ -1,0 +1,13 @@
+button {
+  float: right;
+}
+
+div.attatched {
+  border: 1px solid darkgray;
+  padding-left: 10px;
+}
+
+div.active{
+  border:3px solid blue;
+  background-color: lightgray;
+}
