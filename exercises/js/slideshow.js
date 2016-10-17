@@ -1,59 +1,57 @@
 function Slideshow() {
-  this.ulSlides = $('ul#slideshow').eq(0);
-  this.slides = this.ulSlides.children('li');
-  this.newDiv = $('<div></div>');
+  this.$ulSlides = $('ul#slideshow');
+  this.slides = this.$ulSlides.find('li');
   this.previewItems = [];
 
   this.init();
-  this.hideSlides();
-  this.slide();
 }
 
 Slideshow.prototype.init = function () {
   var _this = this;
-
+  var $newDiv = $('<div></div>');
+  
   //(5.3) Init
-  var body = $('body');
+  var $body = $('body');
 
   this.slides.each(function () {
-    var prevImg = $(this).find('img').eq(0).clone();
-    prevImg.attr({ 'width': 100, 'height': 50 });
+    var $prevImg = $(this).find('img').eq(0).clone();
+    $prevImg.attr({ 'width': 100, 'height': 50 });
     var li = $('<div class="preview"></div>');
-    li.append(prevImg);
+    li.append($prevImg);
     _this.previewItems.push(li);
-    _this.newDiv.append(li);
+    $newDiv.append(li);
   });
 
-  this.ulSlides.remove();
-  body.prepend(this.newDiv);
-  body.prepend(this.ulSlides);
-
+  this.$ulSlides.remove();
+  $body.prepend($newDiv);
+  $body.prepend(this.$ulSlides);
+  this.hideSlides();
+  this.slide();
 };
 
 Slideshow.prototype.slide = function () {
-  var imageSrc = '';
-  var currentLi = this.ulSlides.children('li:visible');
-  var slides = this.slides;
+  var imageSrc;
+  var currentLi = this.$ulSlides.children('li:visible');
+  var $firstSlide = this.slides.eq(0);
   if (currentLi.length < 1) {
-    this.slides.eq(0).show();
-    imageSrc = this.slides.eq(0).find('img:first').attr('src');
+    $firstSlide.show();
+    imageSrc = $firstSlide.find('img').attr('src');
   } else if (currentLi.next().length < 1) {
-    this.slides.eq(0).show();
-    imageSrc = this.slides.eq(0).find('img:first').attr('src');
+    $firstSlide.show();
+    imageSrc = $firstSlide.find('img').attr('src');
     currentLi.hide();
   } else {
     currentLi.hide();
     currentLi.next().show();
-    imageSrc = currentLi.next().find('img:first').attr('src');
+    imageSrc = currentLi.next().find('img').attr('src');
   }
 
   this.menuChange(imageSrc);
-
 };
 
 Slideshow.prototype.menuChange = function (currentSlideSrc) {
   this.previewItems.forEach(function (element) {
-    if ($(element).children('img:first').attr('src') == currentSlideSrc) {
+    if ($(element).find('img').attr('src') == currentSlideSrc) {
       $(element).addClass('current-snippet');
     } else {
       $(element).removeClass('current-snippet');

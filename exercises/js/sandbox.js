@@ -39,10 +39,10 @@ Sandbox.prototype.oddRows = function () {
 
 //(2.2) Traversing
 Sandbox.prototype.logImageAttributes = function () {
-  var imgs = $('img');
+  var $imgs = $('img');
 
-  for (var i = 0; i < imgs.length; i++) {
-    console.log($(imgs[i]).attr('alt'));
+  for (var i = 0; i < $imgs.length; i++) {
+    console.log($($imgs[i]).attr('alt'));
   }
 };
 
@@ -67,7 +67,7 @@ Sandbox.prototype.manipulateLiWithClassCurrent = function () {
 };
 
 Sandbox.prototype.selectSpecialsSelect = function () {
-  return $('div#specials select[name="day"]');
+  return $('div#specials select');
 };
 
 Sandbox.prototype.traverseToButton = function () {
@@ -75,22 +75,21 @@ Sandbox.prototype.traverseToButton = function () {
 };
 
 Sandbox.prototype.manipulateSlideShowElement = function () {
-  var firstElem = $('ul#slideshow li').eq(0);
-  firstElem.addClass('current');
-  var siblings = firstElem.siblings();
+  var $firstElem = $('ul#slideshow li').eq(0);
+  $firstElem.addClass('current');
+  var $siblings = $firstElem.siblings();
 
-  for (var i = 0; i < siblings.length; i++) {
-    $(siblings[i]).addClass('disabled');
-  }
+  $($siblings).addClass('disabled');
 };
 
 
 //(2.3) Manipulating
 Sandbox.prototype.addFiveItems = function () {
-  var list = $('ul#myList');
+  var $appendee = $();
   for (var i = 0; i < 5; i++) {
-    list.append('<li>Item Added : ' + (i + 1) + '</li>');
+    $appendee = $appendee.add('<li>Item Added : ' + (i + 1) + '</li>');
   }
+  $('ul#myList').append($appendee);
 };
 
 Sandbox.prototype.removeOddItems = function () {
@@ -100,25 +99,21 @@ Sandbox.prototype.removeOddItems = function () {
 Sandbox.prototype.addItemsToTheDivModule = function () {
   $('div.module')
     .last()
-    .append('<h2>This is a new Header</h2>')
-    .append('<p>This is a new paragraph</p>');
+    .append(($('<h2 />').text('This is a new Header')), ($('<p />').text('This is a new paragraph')));
 };
 
 Sandbox.prototype.addAnotherOption = function () {
-  $('select[name="day"]').append('<option value="Wednesday">Wednesday </option>');
+  ($('<option />').val('Wednesday').text('Wednesday')).insertAfter($('option[value="tuesday"]'));
 };
 
 Sandbox.prototype.addAnotherDivModule = function () {
-  var newDiv = $('<div class="module"></div>');
-  var img = $('img').eq(0);
-  newDiv.append(img);
-  newDiv.insertAfter($('div.module').last());
+  $('<div class="module"></div>').append($('img').eq(0)).insertAfter($('div.module').last());
 };
 
 
 
 $(function () {
   var sandBox = new Sandbox();
-  //sandBox.addAnotherDivModule();
+  sandBox.addAnotherDivModule();
   //console.log(sandBox.addItemsToTheDivModule());
 });

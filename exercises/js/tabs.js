@@ -4,22 +4,22 @@ function Tabs() {
 
 Tabs.prototype.init = function () {
   //Init
-  var modules = $('div.module');
+  var $modules = $('div.module');
 
   //Step 1
-  modules.each(function () {
+  $modules.each(function () {
     $(this).hide();
   });
 
   //Step 2
-  var ul = $('<ul></ul>');
-  ul.insertBefore(modules.eq(0));
+  var $ul = $('<ul></ul>');
+  $ul.insertBefore($modules.eq(0));
 
   //Step 3 & 4
-  modules.each(function () {
-    var div = $(this);
-    var li = $('<li>' + div.children('h2').text() + '</li>');
-    li.click(function () {
+  $modules.each(function () {
+    var $div = $(this);
+    var $li = $('<li>' + div.children('h2').text() + '</li>');
+    $li.click(function () {
       div.show();
       div.addClass('current');
       div.siblings('div.module')
@@ -28,11 +28,11 @@ Tabs.prototype.init = function () {
           $(this).hide();
         });
     });
-    ul.append(li);
+    $ul.append($li);
   });
 
   //Step 5
-  ul.children('li')
+  $ul.children('li')
     .eq(0)
     .trigger('click');
 
