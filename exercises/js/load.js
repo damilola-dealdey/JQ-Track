@@ -14,9 +14,9 @@ Load.prototype.init = function (){
   });
 
   this.headerListItems.each(function (){
-    var newDiv = $('<div></div>');
-    newDiv.insertAfter($(this));
-    $(this).data('targetdiv', newDiv);
+    var $newDiv = $('<div></div>');
+    $newDiv.insertAfter($(this));
+    $(this).data('targetdiv', $newDiv);
   });
 };
 
