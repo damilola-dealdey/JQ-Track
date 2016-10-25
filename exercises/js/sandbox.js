@@ -62,8 +62,7 @@ Sandbox.prototype.selectElementWithClassCurrent = function () {
 
 Sandbox.prototype.manipulateLiWithClassCurrent = function () {
   var elem = this.selectElementWithClassCurrent();
-  elem.removeClass('current');
-  elem.next().addClass('current');
+  elem.removeClass('current').next().addClass('current');
 };
 
 Sandbox.prototype.selectSpecialsSelect = function () {
@@ -76,10 +75,7 @@ Sandbox.prototype.traverseToButton = function () {
 
 Sandbox.prototype.manipulateSlideShowElement = function () {
   var $firstElem = $('ul#slideshow li').eq(0);
-  $firstElem.addClass('current');
-  var $siblings = $firstElem.siblings();
-
-  $($siblings).addClass('disabled');
+  $firstElem.addClass('current').siblings().addClass('disabled');
 };
 
 
