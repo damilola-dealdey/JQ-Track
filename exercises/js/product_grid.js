@@ -1,19 +1,16 @@
 function ProductGrid() {
   this.products = [];
   this.productsDivs = [];
+  this.$mainContainer = $('#mainContent');
+  this.$productBox = $('.product-grid');
   this.init();
 }
 
 ProductGrid.prototype.init = function () {
   var _this = this;
-  this.mainContainer = $('#mainContent');
-  this.productBox = $('.product-grid');
-  $('input[type="checkbox"]').each(function () {
-    $(this).change(function () {
-      _this.runSearch();
-    });
+  $('input[type="checkbox"]').change(function () {
+    _this.runSearch();
   });
-
 
   $.getJSON('http://dl.dropbox.com/u/628209/exercises/javascript/product.json', function (resp) {
     _this.products = resp;
@@ -39,7 +36,7 @@ ProductGrid.prototype.makePage = function (json) {
     newDiv.data('status', product.sold_out);
     newDiv.append(subDiv);
     _this.productsDivs.push(newDiv);
-    _this.productBox.append(newDiv);
+    _this.$productBox.append(newDiv);
   }, this);
 };
 
@@ -107,4 +104,4 @@ ProductGrid.prototype.runSearch = function () {
 
 };
 
-var pg = new ProductGrid();
+new ProductGrid();
