@@ -12,7 +12,7 @@ Delegate.prototype.init = function () {
   });
 
   $('body').on('click', 'div.attatched', function () {
-    _this.hit(this);
+    _this.hit($(this));
   });
 }; 
 
@@ -24,10 +24,10 @@ Delegate.prototype.add = function () {
   this.$mainContainer.append(newDiv);
 };
 
-Delegate.prototype.hit = function(elem){
-  var index = $(elem).data('index');
+Delegate.prototype.hit = function($elem){
+  var index = $elem.data('index');
   if(index == this.counter){
-    $(elem).remove();
+    $elem.remove();
     this.counter--;
     return;
   }
@@ -36,7 +36,7 @@ Delegate.prototype.hit = function(elem){
     $(this).removeClass('active');
   });
 
-  $(elem).addClass('active');
+  $elem.addClass('active');
 };
 
 new Delegate();
