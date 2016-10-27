@@ -11,7 +11,7 @@ Delegate.prototype.init = function () {
     _this.add();
   });
 
-  $('body').on('click', 'div.attatched', function () {
+  $('#main-container').on('click', 'div.attatched', function () {
     _this.hit($(this));
   });
 }; 
